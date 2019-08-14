@@ -128,12 +128,12 @@ class TweetAnalyzer():
  
 if __name__ == '__main__':
 
-    twitter_client = TwitterClient()
+    twitter_client = TwitterClient(twitter_user="realDonaldTrump")
     tweet_analyzer = TweetAnalyzer()
 
-    api = twitter_client.get_twitter_client_api()
-
-    tweets = api.user_timeline(screen_name="realDonaldTrump", count=200)
+    ##api = twitter_client.get_twitter_client_api()
+    
+    tweets = twitter_client.get_user_timeline(200)
 
     df = tweet_analyzer.tweets_to_data_frame(tweets)
     df['sentiment'] = np.array([tweet_analyzer.analyze_sentiment(tweet) for tweet in df['tweets']])
